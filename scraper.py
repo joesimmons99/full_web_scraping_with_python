@@ -2,10 +2,19 @@ from requests_html import HTMLSession
 
 s = HTMLSession()
 
-url = 'https://themes.woocommerce.com/storefront/product-category/clothing/page/1/'
+# def get_product_links(page):
+#     url = f'https://themes.woocommerce.com/storefront/product-category/clothing/page/{page}/'
+#     links = []
+#     r = s.get(url)
 
-r = s.get(url)
+#     products = r.html.find('ul.products li')
 
-# print(r.status_code) # we want to make sure we got a 200 response to establish that the page is working. 300 is a redirect, 400 is a bad request and 500 is a forbidden.
-# print(r.text) # confirm that we're actually getting the page text back.
+#     for item in products:
+#         links.append(item.find('a', first=True).attrs['href']) # an 'a' tag refers to a link to the products.
+#     return links
 
+test_link = 'https://themes.woocommerce.com/storefront/product/lowepro-slingshot-edge-250-aw/'
+
+r = s.get(test_link)
+
+print(r.html.find('h1.product_title.entry-title', first=True).text)
